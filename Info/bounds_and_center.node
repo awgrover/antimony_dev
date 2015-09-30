@@ -1,0 +1,10 @@
+import fab
+
+title('expose')
+input('shape', fab.types.Shape)
+output('bound_xmin', shape.bounds.xmin)
+output('bound_xmax', shape.bounds.xmax)
+output('bound_ymin', shape.bounds.ymin)
+output('bound_ymax', shape.bounds.ymax)
+output('center_x', (shape.bounds.xmax-shape.bounds.xmin)/2)
+output('center_y', (shape.bounds.ymax-shape.bounds.ymin)/2)
