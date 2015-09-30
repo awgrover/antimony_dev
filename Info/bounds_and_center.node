@@ -1,6 +1,6 @@
 import fab
 
-title('expose')
+title('Expose')
 input('shape', fab.types.Shape)
 output('bound_xmin', shape.bounds.xmin)
 output('bound_xmax', shape.bounds.xmax)

@@ -1,6 +1,6 @@
 import fab
 
-title('align_bounds')
+title('Align Bounds')
 input('ref_shape', fab.types.Shape)
 input('move_shape', fab.types.Shape)
 # -1,0,1

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 # Make all these .nodes available for antimony (requires restart)
-# Sadly, antimony downcases/underscores our filenames.
+# Antimony uses the "title()" within each .node!
 
 use strict; use warnings; no warnings 'uninitialized'; use 5.010;
 use File::Basename;

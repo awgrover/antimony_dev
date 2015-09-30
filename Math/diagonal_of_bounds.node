@@ -1,7 +1,7 @@
 import fab
 from math import sqrt
 
-title('radius_of_bounds')
+title('Radius of Bounds')
 # Given a width & length of a rectangle
 # (defaults to shape's bounds)
 # Calculate the radius of a circle that inscribes it

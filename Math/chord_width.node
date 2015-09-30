@@ -1,7 +1,7 @@
 import fab
 from math import sqrt
 
-title('chord_length')
+title('Chord Length')
 # Given a circle with radius circle_r
 # Given a chord tangent to a circle of radius chord_r
 # Calculate the length of the chord
