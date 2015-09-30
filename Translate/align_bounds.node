@@ -1,0 +1,29 @@
+import fab
+
+title('align_bounds')
+input('ref_shape', fab.types.Shape)
+input('move_shape', fab.types.Shape)
+# -1,0,1
+input('x_align',int)
+input('y_align',int)
+input('z_align',int)
+
+dx=0
+dy=0
+dz=0
+if x_align < 0:
+	dx = ref_shape.bounds.xmin - move_shape.bounds.xmin  
+elif x_align > 0:
+	dx =   ref_shape.bounds.xmax - move_shape.bounds.xmax
+if y_align < 0:
+	dy = ref_shape.bounds.ymin - move_shape.bounds.ymin  
+elif y_align > 0:
+	dy =   ref_shape.bounds.ymax - move_shape.bounds.ymax
+if z_align < 0:
+	dz = ref_shape.bounds.zmin - move_shape.bounds.zmin  
+elif z_align > 0:
+	dz =   ref_shape.bounds.zmax - move_shape.bounds.zmax
+output('m.xmax',move_shape.bounds.xmax)
+output('r.xmax',ref_shape.bounds.xmax)
+output('dx',dx)
+output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))	

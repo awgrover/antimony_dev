@@ -1,0 +1,23 @@
+import fab
+from math import sqrt
+
+title('radius_of_bounds')
+# Given a width & length of a rectangle
+# (defaults to shape's bounds)
+# Calculate the radius of a circle that inscribes it
+# or, if you prefer, 
+# Given a chord_length ('width'), and it's tangent circle diameter ('length')
+# Calculate the circle radius that inscribes it
+
+input('shape', fab.types.Shape)
+input('w', float)
+input('l', float)
+
+rez=0
+
+if w
+    rez= sqrt((w/2)**2 + (l/2)**2)
+else
+    rez= sqrt((shape.bounds.x/2)**2 + (shape.bounds.y/2)**2)
+
+output('r', rez)

@@ -1,0 +1,18 @@
+import fab
+from math import sqrt
+
+title('chord_length')
+# Given a circle with radius circle_r
+# Given a chord tangent to a circle of radius chord_r
+# Calculate the length of the chord
+# OR (if you prefer)
+# Given a circle with radius circle_r
+# And the width/2 of a rectangle (chord_tangent_circle_r)
+# Calculate the length of the rectangle
+# such that it's corners are on the circle
+
+input('circle_r', float)
+input('ref_v', float)
+input('chord_tangent_circle2_r', float)
+rez=sqrt( circle_r**2 - chord_tangent_circle2_r**2) * 2
+output('chord_length', rez)

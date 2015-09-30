@@ -1,0 +1,101 @@
+#!/usr/bin/env perl
+# Make all these .nodes available for antimony (requires restart)
+# Sadly, antimony downcases/underscores our filenames.
+
+use strict; use warnings; no warnings 'uninitialized'; use 5.010;
+use File::Basename;
+
+# from qt: QStandardPaths::AppDataLocation
+# cf. http://doc.qt.io/qt-5/qstandardpaths.html
+my $user_data_dir = $ENV{'HOME'} . '/.local/share/antimony/nodes';
+my $here = `pwd`; chomp $here;
+
+remove_broken();
+create_missing();
+ensure_links();
+remove_empties();
+
+sub each_antimony_dir(&) {
+    my ($f) = @_;
+
+    foreach (glob($user_data_dir . "/*")) {
+        next unless -d $_;
+        say "is a Ant dir: $_";
+        &$f(); # use $_
+        }
+    }
+
+sub each_our_dir(&) {
+    my ($f) = @_;
+
+    foreach (glob("*")) {
+        next unless -d $_;
+        next if /^\.$/;
+        say "is our dir: $_";
+        &$f(); # use $_
+        }
+    }
+
+sub remove_empties {
+    each_antimony_dir {
+        if (! scalar(glob($_.'/*'))) {
+            say "was empty: $_";
+            rmdir $_;
+            }
+        }
+    }
+
+sub remove_broken {
+    each_antimony_dir {
+        foreach (glob($_.'/*')) {
+            say "bork? $_";
+            if (-l $_ && !(-e $_)) {
+                say "borken $_";
+                # unlink $_;
+                }
+            }
+            
+        }
+    }
+
+sub create_missing {
+    each_our_dir {
+        my $want = $user_data_dir. "/" . $_;
+        say "want $want";
+        if (-f $want) {
+            warn "Expected a directory: $_\n" ;
+            return;
+            }
+        return if -d $want;
+        say "make $want";
+        mkdir $want;
+        }
+    }
+
+sub ensure_links {
+    each_our_dir {
+        say "chekc links in $_";
+        my $antdir = $user_data_dir . "/". basename($_);
+        foreach (glob($_ . '/*.node')) {
+            my ($from, $to) = strip_common_head("$here/$_", $antdir . "/" . basename($_));
+            if (-l $to) {
+                my $to_target = `readlink $to`; chomp $to_target;
+                if ($to_target eq $from) {
+                    say "already linked $from";
+                    next;
+                    }
+                die "bob";
+                unlink $to;
+                }
+            elsif (-f $to || -e $to) {
+                warn "Didn't expect a file with same name: $to";
+                next;
+                }
+            symlink $from, $to;
+            }
+        }
+    }
+
+sub strip_common_head {
+    return @_;
+    }
