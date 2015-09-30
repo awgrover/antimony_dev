@@ -1,0 +1,42 @@
+import fab
+from math import sqrt
+
+title('Section Z')
+# Section the shape, off to the side
+# The cut is the yz plane
+# rotate it with theta,
+# offset it with x,y
+
+input('shape',  fab.types.Shape)
+
+input('theta_xy', float)
+input('offset_y', float)
+input('offset_x', float)
+
+
+center_x = (shape.bounds.xmax + shape.bounds.xmin)/2
+center_y = (shape.bounds.ymax + shape.bounds.ymin)/2
+center_z = (shape.bounds.zmax + shape.bounds.zmin)/2
+dx =  shape.bounds.xmax - shape.bounds.xmin
+dy =  shape.bounds.ymax - shape.bounds.ymin
+dz =  shape.bounds.zmax - shape.bounds.zmin
+slop = 2 + sqrt(1.5**2 * 3)/2
+
+offset = -dx*2
+
+# x is cutter face
+bounder = fab.shapes.cube(
+	0, 
+	center_x+dy/2 + dx/2*slop,
+	center_y-dy/2 - dy/2*slop, 
+	center_y+dy/2 + dy/2*slop,
+	center_z-dz/2 - dz/2*slop, 
+	center_z+dz/2 + dz/2*slop)
+
+
+output('sectioned', 
+
+fab.shapes.translate(shape & 
+	~fab.shapes.rotate_z(bounder,theta_xy, offset_x,offset_y),
+ offset, 0, 0)
+)
