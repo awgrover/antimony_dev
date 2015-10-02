@@ -12,3 +12,7 @@ output('bound_zmax', shape.bounds.zmax)
 output('center_x', (shape.bounds.xmax-shape.bounds.xmin)/2)
 output('center_y', (shape.bounds.ymax-shape.bounds.ymin)/2)
 output('center_z', (shape.bounds.zmax-shape.bounds.zmin)/2)
+
+output('height', bound_zmax-bound_zmin)
+output('width', bound_xmax-bound_xmin)
+output('depth', bound_ymax-bound_ymin)

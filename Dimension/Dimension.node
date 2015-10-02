@@ -1,0 +1,29 @@
+import fab
+
+title('Dimension')
+# Draw some dimension text
+# Given a shape
+# Specify the attribute that is the dimension of interest
+#	'bounds'
+#	
+input('shape', fab.types.Shape)
+input('attribute',str)
+input('dim_name',str)
+input('ref_v',float)
+input('dim_value',float)
+
+use_dim_v = dim_value
+
+dim_text = "%s %s" % (dim_name, use_dim_v)
+# print( dim_text)
+
+scale=max(.1,min(1, use_dim_v))
+x=shape.bounds.xmin
+y=shape.bounds.ymin - 2 * scale
+
+
+# print( set(globals()))
+# output('scale',scale)
+output('used_dim_value', use_dim_v)
+output('annotation', 
+	fab.shapes.set_color(fab.shapes.text(dim_text, x, y, scale), 100, 100, 255))

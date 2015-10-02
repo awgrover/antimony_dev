@@ -1,0 +1,8 @@
+import fab
+
+title('HideShow')
+
+input('shape',fab.types.Shape)
+input('show',int)
+
+output('out', fab.types.Shape() if show==0 else shape) 

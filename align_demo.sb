@@ -1,0 +1,886 @@
+{
+    "nodes": [
+        {
+            "datums": [
+                {
+                    "expr": "0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "0",
+                    "name": "z",
+                    "type": "float",
+                    "uid": 2
+                },
+                {
+                    "expr": "3",
+                    "name": "width",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "3",
+                    "name": "height",
+                    "type": "float",
+                    "uid": 4
+                },
+                {
+                    "expr": "3",
+                    "name": "depth",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 6
+                }
+            ],
+            "inspector": [
+                -220.13316487078794,
+                -159.79610029571555
+            ],
+            "name": "ref",
+            "script": [
+                "# Neil Gershenfeld 1/24/15",
+                "# Matt Keeter 5/22/15",
+                "",
+                "import fab",
+                "",
+                "title('Cube (center)')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('z', float)",
+                "input('width', float)",
+                "input('height', float)",
+                "input('depth', float)",
+                "",
+                "xmin, xmax = x - width/2, x + width/2",
+                "ymin, ymax = y - height/2, y + height/2",
+                "zmin, zmax = z - depth/2, z + depth/2",
+                "",
+                "output('shape', fab.shapes.cube(xmin, xmax, ymin, ymax, zmin, zmax))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(xmin, ymin, zmin), (xmax, ymin, zmin),",
+                "                  (xmax, ymax, zmin), (xmin, ymax, zmin)], close=True)",
+                "sb.ui.wireframe([(xmin, ymin, zmax), (xmax, ymin, zmax),",
+                "                  (xmax, ymax, zmax), (xmin, ymax, zmax)], close=True)",
+                "sb.ui.wireframe([(xmin, ymin, zmin), (xmin, ymax, zmin),",
+                "                  (xmin, ymax, zmax), (xmin, ymin, zmax)], close=True)",
+                "sb.ui.wireframe([(xmax, ymin, zmin), (xmax, ymax, zmin),",
+                "                  (xmax, ymax, zmax), (xmax, ymin, zmax)], close=True)",
+                "",
+                "def drag_hwd(this, dx,dy,dz):",
+                "   this.width += 2*dx",
+                "   this.height += 2*dy",
+                "   this.depth += 2*dz",
+                "",
+                "sb.ui.point(x, y, z)",
+                "sb.ui.point(x + width/2.0, y + height/2.0, z + depth/2.0,",
+                "             drag=drag_hwd)",
+                "",
+                ""
+            ],
+            "uid": 0
+        },
+        {
+            "datums": [
+                {
+                    "expr": "2",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "2",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "2",
+                    "name": "z",
+                    "type": "float",
+                    "uid": 2
+                },
+                {
+                    "expr": ".5",
+                    "name": "width",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": ".5",
+                    "name": "height",
+                    "type": "float",
+                    "uid": 4
+                },
+                {
+                    "expr": ".5",
+                    "name": "depth",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.750000'),float('1.750000'),float('1.750000'),float('2.250000'),float('2.250000'),float('2.250000'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 6
+                }
+            ],
+            "inspector": [
+                -218.11592743357545,
+                -485.07212793279172
+            ],
+            "name": "c1",
+            "script": [
+                "# Neil Gershenfeld 1/24/15",
+                "# Matt Keeter 5/22/15",
+                "",
+                "import fab",
+                "",
+                "title('Cube (center)')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('z', float)",
+                "input('width', float)",
+                "input('height', float)",
+                "input('depth', float)",
+                "",
+                "xmin, xmax = x - width/2, x + width/2",
+                "ymin, ymax = y - height/2, y + height/2",
+                "zmin, zmax = z - depth/2, z + depth/2",
+                "",
+                "output('shape', fab.shapes.cube(xmin, xmax, ymin, ymax, zmin, zmax))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(xmin, ymin, zmin), (xmax, ymin, zmin),",
+                "                  (xmax, ymax, zmin), (xmin, ymax, zmin)], close=True)",
+                "sb.ui.wireframe([(xmin, ymin, zmax), (xmax, ymin, zmax),",
+                "                  (xmax, ymax, zmax), (xmin, ymax, zmax)], close=True)",
+                "sb.ui.wireframe([(xmin, ymin, zmin), (xmin, ymax, zmin),",
+                "                  (xmin, ymax, zmax), (xmin, ymin, zmax)], close=True)",
+                "sb.ui.wireframe([(xmax, ymin, zmin), (xmax, ymax, zmin),",
+                "                  (xmax, ymax, zmax), (xmax, ymin, zmax)], close=True)",
+                "",
+                "def drag_hwd(this, dx,dy,dz):",
+                "   this.width += 2*dx",
+                "   this.height += 2*dy",
+                "   this.depth += 2*dz",
+                "",
+                "sb.ui.point(x, y, z)",
+                "sb.ui.point(x + width/2.0, y + height/2.0, z + depth/2.0,",
+                "             drag=drag_hwd)",
+                "",
+                ""
+            ],
+            "uid": 2
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "2",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "-2",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "5",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.25",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-3.75",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-2.0",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.75-Zf-2am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-2.000000'),float('-0.250000'),float('2.000000'),float('-1.500000'),float('0.250000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                167.41169532135029,
+                46.039969509730099
+            ],
+            "name": "outer_face_to_face",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
+                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
+                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
+                "# +4 -4 : align center to ref-min, or center to ref-max",
+                "# 5 : align center center",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -1:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 1:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -2:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 2:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 5:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 1
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "150",
+                    "name": "r",
+                    "type": "int",
+                    "uid": 1
+                },
+                {
+                    "expr": "200",
+                    "name": "g",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "255",
+                    "name": "b",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'),color=(150,200,255))",
+                    "name": "out",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -210.21274748673821,
+                188.03840703455057
+            ],
+            "name": "s0",
+            "script": [
+                "import fab",
+                "import math",
+                "",
+                "title('Set color (RGB)')",
+                "",
+                "input(\"shape\", fab.types.Shape)",
+                "input(\"r\", int)",
+                "input(\"g\", int)",
+                "input(\"b\", int)",
+                "",
+                "output(\"out\", fab.shapes.set_color(shape, r, g, b))",
+                ""
+            ],
+            "uid": 4
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "4",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "5",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "-4",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.5",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-2.0",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-3.5",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.5-Yf-2-Zf-3.5am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.250000'),float('-0.250000'),float('-1.750000'),float('1.750000'),float('0.250000'),float('-1.250000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                635.10267437288951,
+                512.48619682673564
+            ],
+            "name": "half_in",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
+                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
+                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
+                "# +4 -4 : align center to ref-min, or center to ref-max",
+                "# 5 : align center center",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -1:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 1:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -2:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 2:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 5:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 3
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__4.__4]",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "1",
+                    "name": "show",
+                    "type": "int",
+                    "uid": 1
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'),color=(150,200,255))",
+                    "name": "out",
+                    "type": "_fabtypes.Shape",
+                    "uid": 2
+                }
+            ],
+            "inspector": [
+                -182.71656532602563,
+                469.20904396828911
+            ],
+            "name": "h0",
+            "script": [
+                "import fab",
+                "",
+                "title('HideShow')",
+                "",
+                "input('shape',fab.types.Shape)",
+                "input('show',int)",
+                "",
+                "output('out', fab.types.Shape() if show==0 else shape) "
+            ],
+            "uid": 5
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "2",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "-1",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "1",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.25",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-3.25",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-0.75",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.25-Zf-0.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-1.500000'),float('1.000000'),float('2.000000'),float('-1.000000'),float('1.500000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                170.29135282945066,
+                -885.69688230166093
+            ],
+            "name": "face_corner",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
+                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
+                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
+                "# +4 -4 : align center to ref-min, or center to ref-max",
+                "# 5 : align center center",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -1:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 1:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -2:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 2:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 5:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 6
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "2",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "3",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "-3",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.25",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-1.75",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-2.25",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-1.75-Zf-2.25am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('0.000000'),float('-0.500000'),float('2.000000'),float('0.500000'),float('0.000000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                988.01150711795481,
+                -515.93383027484015
+            ],
+            "name": "touch_center",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
+                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
+                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
+                "# +4 -4 : align center to ref-min, or center to ref-max",
+                "# 5 : align center center",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -1:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 1:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -2:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 2:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 5:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 7
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "2",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "-3",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "3",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.25",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-2.25",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-1.75",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-2.25-Zf-1.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-0.500000'),float('0.000000'),float('2.000000'),float('0.000000'),float('0.500000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                653.73428368074531,
+                -150.72717117295738
+            ],
+            "name": "touch_center2",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
+                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
+                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
+                "# +4 -4 : align center to ref-min, or center to ref-max",
+                "# 5 : align center center",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -1:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 1:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -2:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 2:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -3:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 5:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 8
+        }
+    ],
+    "protocol": 6,
+    "type": "sb"
+}

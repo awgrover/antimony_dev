@@ -1,0 +1,11 @@
+import fab
+
+title('Values')
+
+for name in [
+	'a',
+	'b',
+	'c',
+	'd'
+	]:
+	input(name, float)

@@ -1,29 +1,53 @@
 import fab
 
 title('Align Bounds')
-input('ref_shape', fab.types.Shape)
+# Align the shape to the reference_shape (using bounds):
+# 0 - none
+# +1 / -1 : align max to max, or min to min. i.e. "inside edge to edge"
+# +2 / -2 : align min to max, or max to min. i.e. "outside edge to edge"
+# +3 -3 : align min to ref-center, or max to ref-center "half left/right"
+# +4 -4 : align center to ref-min, or center to ref-max
+# 5 : align center center
+
 input('move_shape', fab.types.Shape)
-# -1,0,1
+input('ref_shape', fab.types.Shape)
 input('x_align',int)
 input('y_align',int)
 input('z_align',int)
 
-dx=0
-dy=0
-dz=0
-if x_align < 0:
-	dx = ref_shape.bounds.xmin - move_shape.bounds.xmin  
-elif x_align > 0:
-	dx =   ref_shape.bounds.xmax - move_shape.bounds.xmax
-if y_align < 0:
-	dy = ref_shape.bounds.ymin - move_shape.bounds.ymin  
-elif y_align > 0:
-	dy =   ref_shape.bounds.ymax - move_shape.bounds.ymax
-if z_align < 0:
-	dz = ref_shape.bounds.zmin - move_shape.bounds.zmin  
-elif z_align > 0:
-	dz =   ref_shape.bounds.zmax - move_shape.bounds.zmax
-output('m.xmax',move_shape.bounds.xmax)
-output('r.xmax',ref_shape.bounds.xmax)
+def align(direction, ref_min,ref_max,move_min,move_max):
+    dd=0
+    if direction == -1:
+        dd = ref_min - move_min
+    elif direction == 1:
+        dd = ref_max - move_max
+    elif direction == -2:
+        dd = ref_min - move_max
+    elif direction == 2:
+        dd = ref_max - move_min
+    elif direction == 3:
+        center = (ref_max + ref_min)/2
+        dd = center - move_min 
+    elif direction == -3:
+        center = (ref_max + ref_min)/2
+        dd = center - move_max
+    elif direction == 4:
+        center = (move_max + move_min)/2
+        dd = ref_max - center
+    elif direction == -4:
+        center = (move_max + move_min)/2
+        dd = ref_min - center
+    elif direction == 5:
+        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2
+    return dd
+
+dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)
+dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)
+dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)
+
 output('dx',dx)
-output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))	
+output('dy',dy)
+output('dz',dz)
+
+output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))
+

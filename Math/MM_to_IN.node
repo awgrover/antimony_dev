@@ -1,0 +1,6 @@
+import fab
+
+title('MM To In')
+input('ref_v',float)
+input('mm', float)
+output('c', mm * 0.0393701)

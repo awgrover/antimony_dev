@@ -91,6 +91,9 @@ sub ensure_links {
                 warn "Didn't expect a file with same name: $to";
                 next;
                 }
+            else {
+              say "link $from";
+              }
             symlink $from, $to;
             }
         }
