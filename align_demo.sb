@@ -15,7 +15,7 @@
                     "uid": 1
                 },
                 {
-                    "expr": "0",
+                    "expr": "-2",
                     "name": "z",
                     "type": "float",
                     "uid": 2
@@ -39,7 +39,7 @@
                     "uid": 5
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'))",
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-3.5Z-Zf-0.5',float('-1.500000'),float('-1.500000'),float('-3.500000'),float('1.500000'),float('1.500000'),float('-0.500000'))",
                     "name": "shape",
                     "type": "_fabtypes.Shape",
                     "uid": 6
@@ -191,126 +191,6 @@
         {
             "datums": [
                 {
-                    "expr": "\u0011[__2.__6]",
-                    "name": "move_shape",
-                    "type": "_fabtypes.Shape",
-                    "uid": 0
-                },
-                {
-                    "expr": "\u0011[__0.__6]",
-                    "name": "ref_shape",
-                    "type": "_fabtypes.Shape",
-                    "uid": 1
-                },
-                {
-                    "expr": "2",
-                    "name": "x_align",
-                    "type": "int",
-                    "uid": 2
-                },
-                {
-                    "expr": "-2",
-                    "name": "y_align",
-                    "type": "int",
-                    "uid": 3
-                },
-                {
-                    "expr": "5",
-                    "name": "z_align",
-                    "type": "int",
-                    "uid": 4
-                },
-                {
-                    "expr": "\u0012-0.25",
-                    "name": "dx",
-                    "type": "float",
-                    "uid": 5
-                },
-                {
-                    "expr": "\u0012-3.75",
-                    "name": "dy",
-                    "type": "float",
-                    "uid": 6
-                },
-                {
-                    "expr": "\u0012-2.0",
-                    "name": "dz",
-                    "type": "float",
-                    "uid": 7
-                },
-                {
-                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.75-Zf-2am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-2.000000'),float('-0.250000'),float('2.000000'),float('-1.500000'),float('0.250000'))",
-                    "name": "aligned",
-                    "type": "_fabtypes.Shape",
-                    "uid": 8
-                }
-            ],
-            "inspector": [
-                167.41169532135029,
-                46.039969509730099
-            ],
-            "name": "outer_face_to_face",
-            "script": [
-                "import fab",
-                "",
-                "title('Align Bounds')",
-                "# Align the shape to the reference_shape (using bounds):",
-                "# 0 - none",
-                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
-                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
-                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
-                "# +4 -4 : align center to ref-min, or center to ref-max",
-                "# 5 : align center center",
-                "",
-                "input('move_shape', fab.types.Shape)",
-                "input('ref_shape', fab.types.Shape)",
-                "input('x_align',int)",
-                "input('y_align',int)",
-                "input('z_align',int)",
-                "",
-                "def align(direction, ref_min,ref_max,move_min,move_max):",
-                "    dd=0",
-                "    if direction == -1:",
-                "        dd = ref_min - move_min",
-                "    elif direction == 1:",
-                "        dd = ref_max - move_max",
-                "    elif direction == -2:",
-                "        dd = ref_min - move_max",
-                "    elif direction == 2:",
-                "        dd = ref_max - move_min",
-                "    elif direction == 3:",
-                "        center = (ref_max + ref_min)/2",
-                "        dd = center - move_min ",
-                "    elif direction == -3:",
-                "        center = (ref_max + ref_min)/2",
-                "        dd = center - move_max",
-                "    elif direction == 4:",
-                "        center = (move_max + move_min)/2",
-                "        dd = ref_max - center",
-                "    elif direction == -4:",
-                "        center = (move_max + move_min)/2",
-                "        dd = ref_min - center",
-                "    elif direction == 5:",
-                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
-                "    return dd",
-                "",
-                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
-                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
-                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
-                "",
-                "output('dx',dx)",
-                "output('dy',dy)",
-                "output('dz',dz)",
-                "",
-                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
-                "",
-                ""
-            ],
-            "uid": 1
-        },
-        {
-            "datums": [
-                {
                     "expr": "\u0011[__0.__6]",
                     "name": "shape",
                     "type": "_fabtypes.Shape",
@@ -335,7 +215,7 @@
                     "uid": 3
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'),color=(150,200,255))",
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-3.5Z-Zf-0.5',float('-1.500000'),float('-1.500000'),float('-3.500000'),float('1.500000'),float('1.500000'),float('-0.500000'),color=(150,200,255))",
                     "name": "out",
                     "type": "_fabtypes.Shape",
                     "uid": 4
@@ -365,126 +245,6 @@
         {
             "datums": [
                 {
-                    "expr": "\u0011[__2.__6]",
-                    "name": "move_shape",
-                    "type": "_fabtypes.Shape",
-                    "uid": 0
-                },
-                {
-                    "expr": "\u0011[__0.__6]",
-                    "name": "ref_shape",
-                    "type": "_fabtypes.Shape",
-                    "uid": 1
-                },
-                {
-                    "expr": "4",
-                    "name": "x_align",
-                    "type": "int",
-                    "uid": 2
-                },
-                {
-                    "expr": "5",
-                    "name": "y_align",
-                    "type": "int",
-                    "uid": 3
-                },
-                {
-                    "expr": "-4",
-                    "name": "z_align",
-                    "type": "int",
-                    "uid": 4
-                },
-                {
-                    "expr": "\u0012-0.5",
-                    "name": "dx",
-                    "type": "float",
-                    "uid": 5
-                },
-                {
-                    "expr": "\u0012-2.0",
-                    "name": "dy",
-                    "type": "float",
-                    "uid": 6
-                },
-                {
-                    "expr": "\u0012-3.5",
-                    "name": "dz",
-                    "type": "float",
-                    "uid": 7
-                },
-                {
-                    "expr": "\u0012fab.types.Shape('m-Xf-0.5-Yf-2-Zf-3.5am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.250000'),float('-0.250000'),float('-1.750000'),float('1.750000'),float('0.250000'),float('-1.250000'))",
-                    "name": "aligned",
-                    "type": "_fabtypes.Shape",
-                    "uid": 8
-                }
-            ],
-            "inspector": [
-                635.10267437288951,
-                512.48619682673564
-            ],
-            "name": "half_in",
-            "script": [
-                "import fab",
-                "",
-                "title('Align Bounds')",
-                "# Align the shape to the reference_shape (using bounds):",
-                "# 0 - none",
-                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
-                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
-                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
-                "# +4 -4 : align center to ref-min, or center to ref-max",
-                "# 5 : align center center",
-                "",
-                "input('move_shape', fab.types.Shape)",
-                "input('ref_shape', fab.types.Shape)",
-                "input('x_align',int)",
-                "input('y_align',int)",
-                "input('z_align',int)",
-                "",
-                "def align(direction, ref_min,ref_max,move_min,move_max):",
-                "    dd=0",
-                "    if direction == -1:",
-                "        dd = ref_min - move_min",
-                "    elif direction == 1:",
-                "        dd = ref_max - move_max",
-                "    elif direction == -2:",
-                "        dd = ref_min - move_max",
-                "    elif direction == 2:",
-                "        dd = ref_max - move_min",
-                "    elif direction == 3:",
-                "        center = (ref_max + ref_min)/2",
-                "        dd = center - move_min ",
-                "    elif direction == -3:",
-                "        center = (ref_max + ref_min)/2",
-                "        dd = center - move_max",
-                "    elif direction == 4:",
-                "        center = (move_max + move_min)/2",
-                "        dd = ref_max - center",
-                "    elif direction == -4:",
-                "        center = (move_max + move_min)/2",
-                "        dd = ref_min - center",
-                "    elif direction == 5:",
-                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
-                "    return dd",
-                "",
-                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
-                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
-                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
-                "",
-                "output('dx',dx)",
-                "output('dy',dy)",
-                "output('dz',dz)",
-                "",
-                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
-                "",
-                ""
-            ],
-            "uid": 3
-        },
-        {
-            "datums": [
-                {
                     "expr": "\u0011[__4.__4]",
                     "name": "shape",
                     "type": "_fabtypes.Shape",
@@ -497,7 +257,7 @@
                     "uid": 1
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-1.5Z-Zf1.5',float('-1.500000'),float('-1.500000'),float('-1.500000'),float('1.500000'),float('1.500000'),float('1.500000'),color=(150,200,255))",
+                    "expr": "\u0012fab.types.Shape('am__f1aa-f-1.5X-Xf1.5a-f-1.5Y-Yf1.5a-f-3.5Z-Zf-0.5',float('-1.500000'),float('-1.500000'),float('-3.500000'),float('1.500000'),float('1.500000'),float('-0.500000'),color=(150,200,255))",
                     "name": "out",
                     "type": "_fabtypes.Shape",
                     "uid": 2
@@ -535,13 +295,13 @@
                     "uid": 1
                 },
                 {
-                    "expr": "2",
+                    "expr": "5",
                     "name": "x_align",
                     "type": "int",
                     "uid": 2
                 },
                 {
-                    "expr": "-1",
+                    "expr": "-5",
                     "name": "y_align",
                     "type": "int",
                     "uid": 3
@@ -559,40 +319,40 @@
                     "uid": 5
                 },
                 {
-                    "expr": "\u0012-3.25",
+                    "expr": "\u0012-3.75",
                     "name": "dy",
                     "type": "float",
                     "uid": 6
                 },
                 {
-                    "expr": "\u0012-0.75",
+                    "expr": "\u0012-4.0",
                     "name": "dz",
                     "type": "float",
                     "uid": 7
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.25-Zf-0.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-1.500000'),float('1.000000'),float('2.000000'),float('-1.000000'),float('1.500000'))",
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.75-Zf-4am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-2.000000'),float('-2.250000'),float('2.000000'),float('-1.500000'),float('-1.750000'))",
                     "name": "aligned",
                     "type": "_fabtypes.Shape",
                     "uid": 8
                 }
             ],
             "inspector": [
-                170.29135282945066,
-                -885.69688230166093
+                178.51411585633087,
+                -91.07863053894431
             ],
-            "name": "face_corner",
+            "name": "outside",
             "script": [
                 "import fab",
                 "",
                 "title('Align Bounds')",
                 "# Align the shape to the reference_shape (using bounds):",
                 "# 0 - none",
-                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
-                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
-                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
-                "# +4 -4 : align center to ref-min, or center to ref-max",
-                "# 5 : align center center",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
                 "",
                 "input('move_shape', fab.types.Shape)",
                 "input('ref_shape', fab.types.Shape)",
@@ -602,18 +362,18 @@
                 "",
                 "def align(direction, ref_min,ref_max,move_min,move_max):",
                 "    dd=0",
-                "    if direction == -1:",
+                "    if direction == -3:",
                 "        dd = ref_min - move_min",
-                "    elif direction == 1:",
-                "        dd = ref_max - move_max",
-                "    elif direction == -2:",
-                "        dd = ref_min - move_max",
-                "    elif direction == 2:",
-                "        dd = ref_max - move_min",
                 "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_min ",
-                "    elif direction == -3:",
+                "    elif direction == -2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_max",
                 "    elif direction == 4:",
@@ -622,7 +382,7 @@
                 "    elif direction == -4:",
                 "        center = (move_max + move_min)/2",
                 "        dd = ref_min - center",
-                "    elif direction == 5:",
+                "    elif direction == 1:",
                 "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
                 "    return dd",
                 "",
@@ -638,7 +398,7 @@
                 "",
                 ""
             ],
-            "uid": 6
+            "uid": 9
         },
         {
             "datums": [
@@ -655,19 +415,139 @@
                     "uid": 1
                 },
                 {
-                    "expr": "2",
+                    "expr": "4",
                     "name": "x_align",
                     "type": "int",
                     "uid": 2
                 },
                 {
-                    "expr": "3",
+                    "expr": "1",
                     "name": "y_align",
                     "type": "int",
                     "uid": 3
                 },
                 {
-                    "expr": "-3",
+                    "expr": "-4",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.5",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-2.0",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-5.5",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.5-Yf-2-Zf-5.5am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.250000'),float('-0.250000'),float('-3.750000'),float('1.750000'),float('0.250000'),float('-3.250000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                798.74094046725759,
+                365.20665910188279
+            ],
+            "name": "half_in",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 1
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "5",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "2",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "-2",
                     "name": "z_align",
                     "type": "int",
                     "uid": 4
@@ -685,34 +565,34 @@
                     "uid": 6
                 },
                 {
-                    "expr": "\u0012-2.25",
+                    "expr": "\u0012-4.25",
                     "name": "dz",
                     "type": "float",
                     "uid": 7
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-1.75-Zf-2.25am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('0.000000'),float('-0.500000'),float('2.000000'),float('0.500000'),float('0.000000'))",
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-1.75-Zf-4.25am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('0.000000'),float('-2.500000'),float('2.000000'),float('0.500000'),float('-2.000000'))",
                     "name": "aligned",
                     "type": "_fabtypes.Shape",
                     "uid": 8
                 }
             ],
             "inspector": [
-                988.01150711795481,
-                -515.93383027484015
+                1074.6905416409752,
+                -666.73287426364004
             ],
-            "name": "touch_center",
+            "name": "tangent_to_center",
             "script": [
                 "import fab",
                 "",
                 "title('Align Bounds')",
                 "# Align the shape to the reference_shape (using bounds):",
                 "# 0 - none",
-                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
-                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
-                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
-                "# +4 -4 : align center to ref-min, or center to ref-max",
-                "# 5 : align center center",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
                 "",
                 "input('move_shape', fab.types.Shape)",
                 "input('ref_shape', fab.types.Shape)",
@@ -722,18 +602,18 @@
                 "",
                 "def align(direction, ref_min,ref_max,move_min,move_max):",
                 "    dd=0",
-                "    if direction == -1:",
+                "    if direction == -3:",
                 "        dd = ref_min - move_min",
-                "    elif direction == 1:",
-                "        dd = ref_max - move_max",
-                "    elif direction == -2:",
-                "        dd = ref_min - move_max",
-                "    elif direction == 2:",
-                "        dd = ref_max - move_min",
                 "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_min ",
-                "    elif direction == -3:",
+                "    elif direction == -2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_max",
                 "    elif direction == 4:",
@@ -742,7 +622,127 @@
                 "    elif direction == -4:",
                 "        center = (move_max + move_min)/2",
                 "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 3
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "5",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "-2",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "2",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-0.25",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-2.25",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u0012-3.75",
+                    "name": "dz",
+                    "type": "float",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-2.25-Zf-3.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-0.500000'),float('-2.000000'),float('2.000000'),float('0.000000'),float('-1.500000'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                694.87400293429369,
+                -274.20262600007391
+            ],
+            "name": "tangent_to_center0",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
                 "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
                 "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
                 "    return dd",
                 "",
@@ -775,7 +775,7 @@
                     "uid": 1
                 },
                 {
-                    "expr": "2",
+                    "expr": "5",
                     "name": "x_align",
                     "type": "int",
                     "uid": 2
@@ -799,40 +799,40 @@
                     "uid": 5
                 },
                 {
-                    "expr": "\u0012-2.25",
+                    "expr": "\u0012-3.25",
                     "name": "dy",
                     "type": "float",
                     "uid": 6
                 },
                 {
-                    "expr": "\u0012-1.75",
+                    "expr": "\u0012-2.75",
                     "name": "dz",
                     "type": "float",
                     "uid": 7
                 },
                 {
-                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-2.25-Zf-1.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-0.500000'),float('0.000000'),float('2.000000'),float('0.000000'),float('0.500000'))",
+                    "expr": "\u0012fab.types.Shape('m-Xf-0.25-Yf-3.25-Zf-2.75am__f1aa-f1.75X-Xf2.25a-f1.75Y-Yf2.25a-f1.75Z-Zf2.25',float('1.500000'),float('-1.500000'),float('-1.000000'),float('2.000000'),float('-1.000000'),float('-0.500000'))",
                     "name": "aligned",
                     "type": "_fabtypes.Shape",
                     "uid": 8
                 }
             ],
             "inspector": [
-                653.73428368074531,
-                -150.72717117295738
+                370.63407821565158,
+                -993.72380725773428
             ],
-            "name": "touch_center2",
+            "name": "inner",
             "script": [
                 "import fab",
                 "",
                 "title('Align Bounds')",
                 "# Align the shape to the reference_shape (using bounds):",
                 "# 0 - none",
-                "# +1 / -1 : align max to max, or min to min. i.e. \"inside edge to edge\"",
-                "# +2 / -2 : align min to max, or max to min. i.e. \"outside edge to edge\"",
-                "# +3 -3 : align min to ref-center, or max to ref-center \"half left/right\"",
-                "# +4 -4 : align center to ref-min, or center to ref-max",
-                "# 5 : align center center",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
                 "",
                 "input('move_shape', fab.types.Shape)",
                 "input('ref_shape', fab.types.Shape)",
@@ -842,18 +842,18 @@
                 "",
                 "def align(direction, ref_min,ref_max,move_min,move_max):",
                 "    dd=0",
-                "    if direction == -1:",
+                "    if direction == -3:",
                 "        dd = ref_min - move_min",
-                "    elif direction == 1:",
-                "        dd = ref_max - move_max",
-                "    elif direction == -2:",
-                "        dd = ref_min - move_max",
-                "    elif direction == 2:",
-                "        dd = ref_max - move_min",
                 "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_min ",
-                "    elif direction == -3:",
+                "    elif direction == -2:",
                 "        center = (ref_max + ref_min)/2",
                 "        dd = center - move_max",
                 "    elif direction == 4:",
@@ -862,7 +862,7 @@
                 "    elif direction == -4:",
                 "        center = (move_max + move_min)/2",
                 "        dd = ref_min - center",
-                "    elif direction == 5:",
+                "    elif direction == 1:",
                 "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
                 "    return dd",
                 "",
@@ -879,6 +879,1122 @@
                 ""
             ],
             "uid": 8
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'0 - None'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiim-Xf0-Yf-1-Zf0m/Xf0.7Y_a-r+q-Xf0.5q-Yf0.5f0.5nm+f0.5/-Xf0.5f0.83666Y_-r+q-Xf0.5q-Yf0.5f0.4m-Xf0.8-Yf-1-Zf0f1.0m-Xf1.45-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf2-Yf-1-Zf0f1.0m-Xf2.65-Yf-1-Zf0iiiaa-f0X-Xf0.1a-f0Y-Yf1aa-f0.5X-Xf0.6a-f0Y-Yf1ni-*f0-Xf0*f0.1-Yf1i-*f-1-Xf0.1*f0.5-Yf1-*f1-Xf0.6*f-0.6-Yf0ni-*f0-Xf0.6*f-0.1-Yf0i-*f1-Xf0.5*f-0.5-Yf0-*f-1-Xf0*f0.6-Yf1m-Xf3.35-Yf-1-Zf0a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175m-Xf4-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.65-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275',float('0.000000'),float('0.000000'),float('-inf'),float('2.080000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -1082.7648125201365,
+                -651.47247591670464
+            ],
+            "name": "t0",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 6
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__6.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__2.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "5",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u00120.9600000381469727",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u00122.25",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0.96-Yf2.25-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiim-Xf0-Yf-1-Zf0m/Xf0.7Y_a-r+q-Xf0.5q-Yf0.5f0.5nm+f0.5/-Xf0.5f0.83666Y_-r+q-Xf0.5q-Yf0.5f0.4m-Xf0.8-Yf-1-Zf0f1.0m-Xf1.45-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf2-Yf-1-Zf0f1.0m-Xf2.65-Yf-1-Zf0iiiaa-f0X-Xf0.1a-f0Y-Yf1aa-f0.5X-Xf0.6a-f0Y-Yf1ni-*f0-Xf0*f0.1-Yf1i-*f-1-Xf0.1*f0.5-Yf1-*f1-Xf0.6*f-0.6-Yf0ni-*f0-Xf0.6*f-0.1-Yf0i-*f1-Xf0.5*f-0.5-Yf0-*f-1-Xf0*f0.6-Yf1m-Xf3.35-Yf-1-Zf0a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175m-Xf4-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.65-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275',float('0.960000'),float('2.250000'),float('-inf'),float('3.040000'),float('2.650000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -774.60869224758142,
+                -792.17389961323352
+            ],
+            "name": "a0",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 11
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'1 - center'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiim-Xf0-Yf-1-Zf0aaaa-f0X-Xf0.3a-f0Y-Yf1n-r+qXq-Yf1f0.2naa-f0X-Xf0.2a-f0Y-Yf0.7m-Xf0.4-Yf-1-Zf0f1.0m-Xf1.05-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.6-Yf-1-Zf0f1.0m-Xf2.25-Yf-1-Zf0aa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0.275-Xf0.275*f0.275-Yf0.275i-*f-0.55-Xf0.55*f0-Yf0.55-*f0.275-Xf0.55*f-0.275-Yf0m-Xf2.83-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf3.48-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.13-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf4.63-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.28-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('0.000000'),float('0.000000'),float('-inf'),float('2.266000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -1046.0717815851995,
+                -227.09494806958418
+            ],
+            "name": "t1",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 12
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__12.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "1",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-1.1330000162124634",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-0.20000000298023224",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-1.133-Yf-0.2-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiim-Xf0-Yf-1-Zf0aaaa-f0X-Xf0.3a-f0Y-Yf1n-r+qXq-Yf1f0.2naa-f0X-Xf0.2a-f0Y-Yf0.7m-Xf0.4-Yf-1-Zf0f1.0m-Xf1.05-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.6-Yf-1-Zf0f1.0m-Xf2.25-Yf-1-Zf0aa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0.275-Xf0.275*f0.275-Yf0.275i-*f-0.55-Xf0.55*f0-Yf0.55-*f0.275-Xf0.55*f-0.275-Yf0m-Xf2.83-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf3.48-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.13-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf4.63-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.28-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('-1.133000'),float('-0.200000'),float('-inf'),float('1.133000'),float('0.200000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -723.2540286656797,
+                -321.587467930434
+            ],
+            "name": "a1",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 13
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__15.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "2",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-2.1689999103546143",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u00120.15000000596046448",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-2.169-Yf0.15-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiiiiiiiiiim-Xf0-Yf-1-Zf0iiiaa-r+q-Xf0.275q-Yf0.725f0.275n-r+q-Xf0.275q-Yf0.725f0.175naa-f0X-Xf0.55a-f0Y-Yf0.725aa-f0X-Xf0.55a-f0Y-Yf0.1ni-*f0.675-Xf0*f0.45-Yf0.1i-*f-0.05-Xf0.45*f0.1-Yf0.775-*f-0.625-Xf0.55*f-0.55-Yf0.725ni-*f0.625-Xf0*f0.55-Yf0.1i-*f-0.625-Xf0.55*f-0.425-Yf0.725-*f0-Xf0.125*f-0.125-Yf0.1m-Xf0.65-Yf-1-Zf0f1.0m-Xf1.3-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.85-Yf-1-Zf0f1.0m-Xf2.5-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf3-Yf-1-Zf0m-Xf-0.05-Yf0-Zf0im--Xf0/*f0.1-Yf0f0.35Y_a-r+q-Xf0.25q-Yf0.275f0.275n-r+q-Xf0.25q-Yf0.275f0.175aa-f0.51X-Xf0.61a-f0Y-Yf0.35m-Xf3.68-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.33-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf-0.1f0.275n-r+q-Xf0.275q-Yf-0.1f0.175aa-f0X-Xf0.55a-f-0.375Y-Yf-0.1a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0.45X-Xf0.55a-f-0.1Y-Yf0.55m-Xf4.98-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.63-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf6.28-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf6.78-Yf-1-Zf0f1.0m-Xf7.43-Yf-1-Zf0aa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0.275-Xf0.275*f0.275-Yf0.275i-*f-0.55-Xf0.55*f0-Yf0.55-*f0.275-Xf0.55*f-0.275-Yf0m-Xf8.01-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf8.66-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf9.31-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf9.81-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf10.46-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('-2.169000'),float('0.000000'),float('-inf'),float('2.169000'),float('0.550000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -711.81415826499233,
+                144.90502507537343
+            ],
+            "name": "a2",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 14
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'2 - tangent center'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiiiiiiiiiim-Xf0-Yf-1-Zf0iiiaa-r+q-Xf0.275q-Yf0.725f0.275n-r+q-Xf0.275q-Yf0.725f0.175naa-f0X-Xf0.55a-f0Y-Yf0.725aa-f0X-Xf0.55a-f0Y-Yf0.1ni-*f0.675-Xf0*f0.45-Yf0.1i-*f-0.05-Xf0.45*f0.1-Yf0.775-*f-0.625-Xf0.55*f-0.55-Yf0.725ni-*f0.625-Xf0*f0.55-Yf0.1i-*f-0.625-Xf0.55*f-0.425-Yf0.725-*f0-Xf0.125*f-0.125-Yf0.1m-Xf0.65-Yf-1-Zf0f1.0m-Xf1.3-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.85-Yf-1-Zf0f1.0m-Xf2.5-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf3-Yf-1-Zf0m-Xf-0.05-Yf0-Zf0im--Xf0/*f0.1-Yf0f0.35Y_a-r+q-Xf0.25q-Yf0.275f0.275n-r+q-Xf0.25q-Yf0.275f0.175aa-f0.51X-Xf0.61a-f0Y-Yf0.35m-Xf3.68-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.33-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf-0.1f0.275n-r+q-Xf0.275q-Yf-0.1f0.175aa-f0X-Xf0.55a-f-0.375Y-Yf-0.1a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0.45X-Xf0.55a-f-0.1Y-Yf0.55m-Xf4.98-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.63-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf6.28-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf6.78-Yf-1-Zf0f1.0m-Xf7.43-Yf-1-Zf0aa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0.275-Xf0.275*f0.275-Yf0.275i-*f-0.55-Xf0.55*f0-Yf0.55-*f0.275-Xf0.55*f-0.275-Yf0m-Xf8.01-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf8.66-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf9.31-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf9.81-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf10.46-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('0.000000'),float('-0.150000'),float('-inf'),float('4.338000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -1048.7827486970746,
+                220.16232057891102
+            ],
+            "name": "t2",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 15
+        },
+        {
+            "datums": [
+                {
+                    "expr": ".4",
+                    "name": "comment_size",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "b",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "0.0",
+                    "name": "c",
+                    "type": "float",
+                    "uid": 2
+                },
+                {
+                    "expr": "0.0",
+                    "name": "d",
+                    "type": "float",
+                    "uid": 3
+                }
+            ],
+            "inspector": [
+                -1637.1725640094819,
+                -166.51366916556066
+            ],
+            "name": "v0",
+            "script": [
+                "import fab",
+                "",
+                "title('Values')",
+                "",
+                "for name in [",
+                "\t'comment_size',",
+                "\t'b',",
+                "\t'c',",
+                "\t'd'",
+                "\t]:",
+                "\tinput(name, float)",
+                ""
+            ],
+            "uid": 16
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'3 - inner'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiim-Xf0-Yf-1-Zf0aaia-r+q-Xf0.3q-Yf0.725f0.275n-r+q-Xf0.3q-Yf0.725f0.175-r+q-Xf0.3q-Yf0.275f0.275n-r+q-Xf0.3q-Yf0.275f0.175naa-f0X-Xf0.275a-f0.275Y-Yf0.725m-Xf0.65-Yf-1-Zf0f1.0m-Xf1.3-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.85-Yf-1-Zf0f1.0m-Xf2.5-Yf-1-Zf0iaa-f0.025X-Xf0.125a-f0Y-Yf0.55-r+q-Xf0.075q-Yf0.7f0.075m-Xf2.75-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf3.4-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.05-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf4.7-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('0.010000'),float('0.000000'),float('-inf'),float('2.034000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -991.7521703831377,
+                671.23287936096881
+            ],
+            "name": "t3",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 17
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__17.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "3",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-1.02199995983392",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u00121.0999999940395355",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-1.022-Yf1.1-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiim-Xf0-Yf-1-Zf0aaia-r+q-Xf0.3q-Yf0.725f0.275n-r+q-Xf0.3q-Yf0.725f0.175-r+q-Xf0.3q-Yf0.275f0.275n-r+q-Xf0.3q-Yf0.275f0.175naa-f0X-Xf0.275a-f0.275Y-Yf0.725m-Xf0.65-Yf-1-Zf0f1.0m-Xf1.3-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.85-Yf-1-Zf0f1.0m-Xf2.5-Yf-1-Zf0iaa-f0.025X-Xf0.125a-f0Y-Yf0.55-r+q-Xf0.075q-Yf0.7f0.075m-Xf2.75-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf3.4-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325m-Xf4.05-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf4.7-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('-1.012000'),float('1.100000'),float('-inf'),float('1.012000'),float('1.500000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -674.9523536405552,
+                598.68655096930604
+            ],
+            "name": "a3",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 18
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'5 - outer'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiim-Xf0-Yf-1-Zf0iiiaa-r+q-Xf0.325q-Yf0.325f0.325n-r+q-Xf0.325q-Yf0.325f0.225naa-f0X-Xf0.325a-f0.325Y-Yf0.65aa-f0X-Xf0.325a-f0.55Y-Yf0.65aa-f0X-Xf0.1a-f0.55Y-Yf1aa-f0.1X-Xf0.65a-f0.9Y-Yf1m-Xf0.75-Yf-1-Zf0f1.0m-Xf1.4-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.95-Yf-1-Zf0f1.0m-Xf2.6-Yf-1-Zf0a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175m-Xf3.25-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0Y-Yf0.275aa-f0X-Xf0.1a-f0.275Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.55m-Xf3.9-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf4.4-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.05-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('0.000000'),float('0.000000'),float('-inf'),float('2.174000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -1004.6319111845123,
+                1147.7253723667764
+            ],
+            "name": "t4",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 19
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__19.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "5",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-1.0870000123977661",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u00121.5",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-1.087-Yf1.5-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiim-Xf0-Yf-1-Zf0iiiaa-r+q-Xf0.325q-Yf0.325f0.325n-r+q-Xf0.325q-Yf0.325f0.225naa-f0X-Xf0.325a-f0.325Y-Yf0.65aa-f0X-Xf0.325a-f0.55Y-Yf0.65aa-f0X-Xf0.1a-f0.55Y-Yf1aa-f0.1X-Xf0.65a-f0.9Y-Yf1m-Xf0.75-Yf-1-Zf0f1.0m-Xf1.4-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.95-Yf-1-Zf0f1.0m-Xf2.6-Yf-1-Zf0a-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175m-Xf3.25-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0Y-Yf0.275aa-f0X-Xf0.1a-f0.275Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.55m-Xf3.9-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.25f0.25n-r+q-Xf0.4q-Yf0.25f0.15aa-f0X-Xf0.4a-f0Y-Yf0.25aa-f0X-Xf0.4a-f0.55Y-Yf0.65aa-f0.15X-Xf0.25a-f0.25Y-Yf1m-Xf4.4-Yf-1-Zf0aiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175nni-*f0-Xf0.1*f0.65-Yf0.275i-*f-0.275-Xf0.75*f-0.15-Yf0.275-*f0.275-Xf0.6*f-0.5-Yf0aa-f0.05X-Xf0.55a-f0.225Y-Yf0.315-r+q-Xf0.275q-Yf0.275f0.275m-Xf5.05-Yf-1-Zf0im/Xf0.7Y_aa-r+q-Xf0.55qYf0.55nm+f0.55/-Xf0.55f0.8Y_-r+q-Xf0.55qYf0.45aa-f0X-Xf0.55a-f0Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55',float('-1.087000'),float('1.500000'),float('-inf'),float('1.087000'),float('1.900000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -676.39222404124257,
+                1075.1790439751135
+            ],
+            "name": "a4",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 20
+        },
+        {
+            "datums": [
+                {
+                    "expr": "0.0",
+                    "name": "x",
+                    "type": "float",
+                    "uid": 0
+                },
+                {
+                    "expr": "0.0",
+                    "name": "y",
+                    "type": "float",
+                    "uid": 1
+                },
+                {
+                    "expr": "'4 - half-in'",
+                    "name": "text",
+                    "type": "str",
+                    "uid": 2
+                },
+                {
+                    "expr": "\u0011[__16.__0]",
+                    "name": "scale",
+                    "type": "float",
+                    "uid": 3
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiiim-Xf0-Yf-1-Zf0aaini-*f0.55-Xf-0.1*f0.5-Yf0.45i-*f-0.55-Xf0.4*f0-Yf1-*f0-Xf0.4*f-0.5-Yf0.45aa-f0.4X-Xf0.5a-f0Y-Yf1nni-*f-0.3-Xf0.4*f0-Yf0.85i-*f0-Xf0.4*f-0.3-Yf0.55-*f0.3-Xf0.1*f0.3-Yf0.55aa-f0X-Xf0.5a-f0Y-Yf1m-Xf0.6-Yf-1-Zf0f1.0m-Xf1.25-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.8-Yf-1-Zf0f1.0m-Xf2.45-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.275Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf1aa-f0.45X-Xf0.55a-f0Y-Yf0.275m-Xf3.1-Yf-1-Zf0m-Xf-0.05-Yf0-Zf0im--Xf0/*f0.1-Yf0f0.35Y_a-r+q-Xf0.25q-Yf0.275f0.275n-r+q-Xf0.25q-Yf0.275f0.175aa-f0.51X-Xf0.61a-f0Y-Yf0.35m-Xf3.78-Yf-1-Zf0aa-f0.025X-Xf0.125a-f0Y-Yf1m-Xf4.03-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.75f0.25n-r+q-Xf0.4q-Yf0.75f0.15aa-f0X-Xf0.4a-f0.75Y-Yf1aa-f0X-Xf0.4a-f0.45Y-Yf0.55aa-f0.15X-Xf0.25a-f0Y-Yf0.75m-Xf4.53-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf5.08-Yf-1-Zf0iaa-f0.025X-Xf0.125a-f0Y-Yf0.55-r+q-Xf0.075q-Yf0.7f0.075m-Xf5.33-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325',float('0.000000'),float('0.000000'),float('-inf'),float('2.352000'),float('0.400000'),float('inf'))",
+                    "name": "shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 4
+                }
+            ],
+            "inspector": [
+                -1009.8850717187622,
+                1586.0849640369595
+            ],
+            "name": "t5",
+            "script": [
+                "import fab",
+                "",
+                "title('Text')",
+                "",
+                "input('x', float)",
+                "input('y', float)",
+                "input('text', str)",
+                "input('scale', float)",
+                "",
+                "output('shape', fab.shapes.text(text, x, y, scale))",
+                "",
+                "# UI",
+                "sb.ui.wireframe([(x, y, 0), (x, y+scale, 0)])",
+                "sb.ui.point(x, y, 0)",
+                "sb.ui.point(x, y + scale, 0, drag=(None, scale, None))",
+                ""
+            ],
+            "uid": 21
+        },
+        {
+            "datums": [
+                {
+                    "expr": "\u0011[__21.__4]",
+                    "name": "move_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 0
+                },
+                {
+                    "expr": "\u0011[__0.__6]",
+                    "name": "ref_shape",
+                    "type": "_fabtypes.Shape",
+                    "uid": 1
+                },
+                {
+                    "expr": "1",
+                    "name": "x_align",
+                    "type": "int",
+                    "uid": 2
+                },
+                {
+                    "expr": "-4",
+                    "name": "y_align",
+                    "type": "int",
+                    "uid": 3
+                },
+                {
+                    "expr": "0",
+                    "name": "z_align",
+                    "type": "int",
+                    "uid": 4
+                },
+                {
+                    "expr": "\u0012-1.1759999990463257",
+                    "name": "dx",
+                    "type": "float",
+                    "uid": 5
+                },
+                {
+                    "expr": "\u0012-1.7000000029802322",
+                    "name": "dy",
+                    "type": "float",
+                    "uid": 6
+                },
+                {
+                    "expr": "\u00120",
+                    "name": "dz",
+                    "type": "int",
+                    "uid": 7
+                },
+                {
+                    "expr": "\u0012fab.types.Shape('m-Xf-1.176-Yf-1.7-Zf0m-Xf0-Yf0-Zf0m+f0/-Xf0f0.4+f0/-Yf0f0.4_m-Xf0-Yf1-Zf0iiiiiiiiiim-Xf0-Yf-1-Zf0aaini-*f0.55-Xf-0.1*f0.5-Yf0.45i-*f-0.55-Xf0.4*f0-Yf1-*f0-Xf0.4*f-0.5-Yf0.45aa-f0.4X-Xf0.5a-f0Y-Yf1nni-*f-0.3-Xf0.4*f0-Yf0.85i-*f0-Xf0.4*f-0.3-Yf0.55-*f0.3-Xf0.1*f0.3-Yf0.55aa-f0X-Xf0.5a-f0Y-Yf1m-Xf0.6-Yf-1-Zf0f1.0m-Xf1.25-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf1.8-Yf-1-Zf0f1.0m-Xf2.45-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.275Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf1aa-f0.45X-Xf0.55a-f0Y-Yf0.275m-Xf3.1-Yf-1-Zf0m-Xf-0.05-Yf0-Zf0im--Xf0/*f0.1-Yf0f0.35Y_a-r+q-Xf0.25q-Yf0.275f0.275n-r+q-Xf0.25q-Yf0.275f0.175aa-f0.51X-Xf0.61a-f0Y-Yf0.35m-Xf3.78-Yf-1-Zf0aa-f0.025X-Xf0.125a-f0Y-Yf1m-Xf4.03-Yf-1-Zf0iiaa-r+q-Xf0.4q-Yf0.75f0.25n-r+q-Xf0.4q-Yf0.75f0.15aa-f0X-Xf0.4a-f0.75Y-Yf1aa-f0X-Xf0.4a-f0.45Y-Yf0.55aa-f0.15X-Xf0.25a-f0Y-Yf0.75m-Xf4.53-Yf-1-Zf0aa-f0.05X-Xf0.4a-f0.35Y-Yf0.45m-Xf5.08-Yf-1-Zf0iaa-f0.025X-Xf0.125a-f0Y-Yf0.55-r+q-Xf0.075q-Yf0.7f0.075m-Xf5.33-Yf-1-Zf0iiaa-r+q-Xf0.275q-Yf0.275f0.275n-r+q-Xf0.275q-Yf0.275f0.175aa-f0X-Xf0.55a-f0.325Y-Yf0.55aa-f0X-Xf0.1a-f0Y-Yf0.55aa-f0.45X-Xf0.55a-f0Y-Yf0.325',float('-1.176000'),float('-1.700000'),float('-inf'),float('1.176000'),float('-1.300000'),float('inf'))",
+                    "name": "aligned",
+                    "type": "_fabtypes.Shape",
+                    "uid": 8
+                }
+            ],
+            "inspector": [
+                -681.64538457549247,
+                1513.5386356452962
+            ],
+            "name": "a5",
+            "script": [
+                "import fab",
+                "",
+                "title('Align Bounds')",
+                "# Align the shape to the reference_shape (using bounds):",
+                "# 0 - none",
+                "# 1 : align center center",
+                "# +2 / -2 : our min/max to ref-center \"tangent-to-center\"",
+                "# +3 / -3 : align max to max, or min to min. i.e. \"inside\"",
+                "# +4 / -4 : align our center to ref-min/max \"half in\"",
+                "# +5 / -5 : align min to max, or max to min. i.e. \"outside\"",
+                "",
+                "input('move_shape', fab.types.Shape)",
+                "input('ref_shape', fab.types.Shape)",
+                "input('x_align',int)",
+                "input('y_align',int)",
+                "input('z_align',int)",
+                "",
+                "def align(direction, ref_min,ref_max,move_min,move_max):",
+                "    dd=0",
+                "    if direction == -3:",
+                "        dd = ref_min - move_min",
+                "    elif direction == 3:",
+                "        dd = ref_max - move_max",
+                "    elif direction == -5:",
+                "        dd = ref_min - move_max",
+                "    elif direction == 5:",
+                "        dd = ref_max - move_min",
+                "    elif direction == 2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_min ",
+                "    elif direction == -2:",
+                "        center = (ref_max + ref_min)/2",
+                "        dd = center - move_max",
+                "    elif direction == 4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_max - center",
+                "    elif direction == -4:",
+                "        center = (move_max + move_min)/2",
+                "        dd = ref_min - center",
+                "    elif direction == 1:",
+                "        dd = (ref_max + ref_min)/2 - (move_max + move_min)/2",
+                "    return dd",
+                "",
+                "dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bounds.xmin, move_shape.bounds.xmax)",
+                "dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)",
+                "dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)",
+                "",
+                "output('dx',dx)",
+                "output('dy',dy)",
+                "output('dz',dz)",
+                "",
+                "output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))",
+                "",
+                ""
+            ],
+            "uid": 22
         }
     ],
     "protocol": 6,

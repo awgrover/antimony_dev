@@ -3,11 +3,11 @@ import fab
 title('Align Bounds')
 # Align the shape to the reference_shape (using bounds):
 # 0 - none
-# +1 / -1 : align max to max, or min to min. i.e. "inside edge to edge"
-# +2 / -2 : align min to max, or max to min. i.e. "outside edge to edge"
-# +3 -3 : align min to ref-center, or max to ref-center "half left/right"
-# +4 -4 : align center to ref-min, or center to ref-max
-# 5 : align center center
+# 1 : align center center
+# +2 / -2 : our min/max to ref-center "tangent-to-center"
+# +3 / -3 : align max to max, or min to min. i.e. "inside"
+# +4 / -4 : align our center to ref-min/max "half in"
+# +5 / -5 : align min to max, or max to min. i.e. "outside"
 
 input('move_shape', fab.types.Shape)
 input('ref_shape', fab.types.Shape)
@@ -17,18 +17,18 @@ input('z_align',int)
 
 def align(direction, ref_min,ref_max,move_min,move_max):
     dd=0
-    if direction == -1:
+    if direction == -3:
         dd = ref_min - move_min
-    elif direction == 1:
-        dd = ref_max - move_max
-    elif direction == -2:
-        dd = ref_min - move_max
-    elif direction == 2:
-        dd = ref_max - move_min
     elif direction == 3:
+        dd = ref_max - move_max
+    elif direction == -5:
+        dd = ref_min - move_max
+    elif direction == 5:
+        dd = ref_max - move_min
+    elif direction == 2:
         center = (ref_max + ref_min)/2
         dd = center - move_min 
-    elif direction == -3:
+    elif direction == -2:
         center = (ref_max + ref_min)/2
         dd = center - move_max
     elif direction == 4:
@@ -37,7 +37,7 @@ def align(direction, ref_min,ref_max,move_min,move_max):
     elif direction == -4:
         center = (move_max + move_min)/2
         dd = ref_min - center
-    elif direction == 5:
+    elif direction == 1:
         dd = (ref_max + ref_min)/2 - (move_max + move_min)/2
     return dd
 
