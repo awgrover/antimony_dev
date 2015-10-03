@@ -45,9 +45,9 @@ dx = align(x_align, ref_shape.bounds.xmin, ref_shape.bounds.xmax, move_shape.bou
 dy = align(y_align, ref_shape.bounds.ymin, ref_shape.bounds.ymax, move_shape.bounds.ymin, move_shape.bounds.ymax)
 dz = align(z_align, ref_shape.bounds.zmin, ref_shape.bounds.zmax, move_shape.bounds.zmin, move_shape.bounds.zmax)
 
-output('dx',dx)
-output('dy',dy)
-output('dz',dz)
+output('dx',dx + 0.0)
+output('dy',dy + 0.0)
+output('dz',dz + 0.0)
 
 output('aligned', fab.shapes.translate(move_shape, dx, dy, dz))
 
