@@ -1,0 +1,10 @@
+import fab
+
+title('Bounds')
+input('shape', fab.types.Shape)
+output('bound_xmin', shape.bounds.xmin)
+output('bound_xmax', shape.bounds.xmax)
+output('bound_ymin', shape.bounds.ymin)
+output('bound_ymax', shape.bounds.ymax)
+output('bound_zmin', shape.bounds.zmin)
+output('bound_zmax', shape.bounds.zmax)

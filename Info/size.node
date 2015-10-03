@@ -1,0 +1,7 @@
+import fab
+
+title('Size')
+input('shape', fab.types.Shape)
+output('height', bound_zmax-bound_zmin)
+output('width', bound_xmax-bound_xmin)
+output('depth', bound_ymax-bound_ymin)
