@@ -2,6 +2,6 @@ import fab
 
 title('Size')
 input('shape', fab.types.Shape)
-output('height', bound_zmax-bound_zmin)
-output('width', bound_xmax-bound_xmin)
-output('depth', bound_ymax-bound_ymin)
+output('height', shape.bounds.ymax-shape.bounds.ymin)
+output('width', shape.bounds.xmax-shape.bounds.xmin)
+output('depth', shape.bounds.zmax-shape.bounds.zmin)

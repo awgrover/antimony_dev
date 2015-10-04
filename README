@@ -3,6 +3,7 @@
 # Antimony uses the "title()" within each .node!
 
 use strict; use warnings; no warnings 'uninitialized'; use 5.010;
+no if ($^V ge v5.18.0), warnings => 'experimental::smartmatch';
 use File::Basename;
 
 # from qt: QStandardPaths::AppDataLocation
@@ -20,7 +21,7 @@ sub each_antimony_dir(&) {
 
     foreach (glob($user_data_dir . "/*")) {
         next unless -d $_;
-        say "is a Ant dir: $_";
+        # say "is a Ant dir: $_";
         &$f(); # use $_
         }
     }
@@ -31,16 +32,19 @@ sub each_our_dir(&) {
     foreach (glob("*")) {
         next unless -d $_;
         next if /^\.$/;
-        say "is our dir: $_";
         &$f(); # use $_
         }
     }
 
 sub remove_empties {
     each_antimony_dir {
-        if (! scalar(glob($_.'/*'))) {
-            say "was empty: $_";
-            rmdir $_;
+        my $suspected_dir=$_;
+        opendir(my $dh, $_) or die $!;
+        my $count=0;
+        $count += ($_ ~~ ['.', '..'] ? 0 : 1) while readdir($dh);
+        if (!$count) {
+            say "obs directory: $suspected_dir";
+            rmdir($suspected_dir) or die $!;
             }
         }
     }
@@ -48,10 +52,9 @@ sub remove_empties {
 sub remove_broken {
     each_antimony_dir {
         foreach (glob($_.'/*')) {
-            say "bork? $_";
-            if (-l $_ && !(-e $_)) {
-                say "borken $_";
-                # unlink $_;
+            if ( (-l $_) && !(-e $_)) {
+                say "obs: $_";
+                unlink $_;
                 }
             }
             
@@ -61,7 +64,7 @@ sub remove_broken {
 sub create_missing {
     each_our_dir {
         my $want = $user_data_dir. "/" . $_;
-        say "want $want";
+        # say "want $want";
         if (-f $want) {
             warn "Expected a directory: $_\n" ;
             return;
@@ -74,7 +77,7 @@ sub create_missing {
 
 sub ensure_links {
     each_our_dir {
-        say "chekc links in $_";
+        # say "chekc links in $_";
         my $antdir = $user_data_dir . "/". basename($_);
         foreach (glob($_ . '/*.node')) {
             my ($from, $to) = strip_common_head("$here/$_", $antdir . "/" . basename($_));
