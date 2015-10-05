@@ -1,9 +1,0 @@
-title('scenario')
-input('fields', str)
-input('sets',list)
-input('which',int)
-
-field_list = fields.split(',')
-
-for i,f in enumerate(field_list):
-    output(f,sets[which][i]+0.0)
