@@ -1,0 +1,64 @@
+from math import sqrt,cos,sin,atan,degrees,tan,pi
+
+title('Tangent through Point')
+# given a circle, and a point
+# calculate the tangent_points, the angles
+
+input('circle_x',float)
+input('circle_y',float)
+input('circle_r',float)
+
+input('x',float)
+input('y',float)
+
+def angle(dx,dy):
+	if dx==0:
+		return pi/2 if dy>0.0 else -pi/2
+	theta = atan(dy/dx)
+	if theta > 0 and dx < 0:
+		theta  = theta + pi
+	elif theta < 0 and dx < 0:
+		theta = theta + pi
+	elif theta == 0.0 and dx<0:
+		theta = theta + pi
+	return theta
+
+
+# because a circle half-way between intersects at the tangents
+half_circle_x = (circle_x + x)/2.0
+half_circle_y = (circle_y + y)/2.0
+half_circle_r = sqrt( ((circle_x-half_circle_x)**2) + ((circle_y-half_circle_y)**2) )
+output('hc_x',half_circle_x)
+output('hc_y',half_circle_y)
+output('hc_r',half_circle_r)
+
+# for circle at (0,0), and point at (2*half_circle_r,0)
+tx = circle_r**2 / (2.0 * half_circle_r)
+ty = sqrt( circle_r**2 - tx**2) 
+output('txz0',tx-circle_x)
+output('tyz0',ty-circle_y)
+# figure the rotation to get back to our original layout
+# translate the pt the same as the circle was translated to 0,0
+px0 = x - circle_x
+py0 = y - circle_y
+output('px0',px0)
+output('py0',py0)
+back_theta = angle( px0, py0 )
+output('back_theta',back_theta)
+# rotate the points
+tx1_r = tx * cos(back_theta) - ty * sin(back_theta)
+ty1_r = tx * sin(back_theta) + ty * cos(back_theta)
+tx2_r = tx * cos(back_theta) + ty * sin(back_theta)
+ty2_r = tx * sin(back_theta) - ty * cos(back_theta)
+
+# translate them back to our original layout
+output('tx1', tx1_r + circle_x)
+output('ty1', ty1_r + circle_y)
+output('tx2', tx2_r + circle_x)
+output('ty2', ty2_r + circle_y)
+
+output('ty1_r',ty1_r)
+output('zzz',px0-tx1_r)
+output('atan1', atan( (py0-ty1_r)/(px0-tx1_r) ))
+output('theta1',degrees(  angle(tx1_r-px0, ty1_r-py0)) )
+output('theta2',degrees(angle( tx2_r-px0, ty2_r-py0)))
