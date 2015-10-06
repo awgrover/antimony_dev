@@ -1,0 +1,13 @@
+import fab
+
+title('dXYZ')
+# the dx,dy,dz between 2 objects
+# useful after a seriers of align, translates
+# so you can get a single dxyz for a parallel translate
+
+input('a', fab.types.Shape)
+input('b', fab.types.Shape)
+
+output('dx', b.bounds.xmin - a.bounds.xmin)
+output('dy', b.bounds.ymin - a.bounds.ymin)
+output('dz', b.bounds.zmin - a.bounds.zmin)
