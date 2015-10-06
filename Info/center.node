@@ -2,6 +2,6 @@ import fab
 
 title('Center')
 input('shape', fab.types.Shape)
-output('center_x', (shape.bounds.xmax-shape.bounds.xmin)/2)
-output('center_y', (shape.bounds.ymax-shape.bounds.ymin)/2)
-output('center_z', (shape.bounds.zmax-shape.bounds.zmin)/2)
+output('center_x', (shape.bounds.xmax+shape.bounds.xmin)/2)
+output('center_y', (shape.bounds.ymax+shape.bounds.ymin)/2)
+output('center_z', (shape.bounds.zmax+shape.bounds.zmin)/2)

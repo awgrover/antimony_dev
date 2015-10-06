@@ -1,4 +1,4 @@
-title('scenario')
+title('Scenario')
 # Name the output fields, comma list, like: 'dx,dy'
 # Provide a list of values for the fields, like: [ [1,2], [1,3], [0,1] ]
 # Pick "which" entry from the list
