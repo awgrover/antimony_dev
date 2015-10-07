@@ -1,0 +1,12 @@
+title('Max')
+
+rez=0
+for name in [
+    'a',
+    'b',
+    'c',
+    ]:
+    input(name, float)
+    rez = max(rez,locals()[name])
+
+output('max',rez)

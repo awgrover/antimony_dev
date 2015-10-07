@@ -1,0 +1,13 @@
+title('+')
+
+tot=0
+for name in [
+    'usb_depth',
+    'usb_leads',
+    'wire_space',
+    'switch_engage'
+    ]:
+    input(name, float)
+    tot += locals()[name]
+
+output('total',tot)

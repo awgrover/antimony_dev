@@ -4,26 +4,52 @@ title('Dimension')
 # Draw some dimension text
 # Given a shape
 # Specify the attribute that is the dimension of interest
-#	'bounds'
-#	
+#       'bounds'
+#       
 input('shape', fab.types.Shape)
 input('attribute',str)
 input('dim_name',str)
 input('ref_v',float)
 input('dim_value',float)
+input('size',float)
 
-use_dim_v = dim_value
 
-dim_text = "%s %s" % (dim_name, use_dim_v)
 # print( dim_text)
 
-scale=max(.1,min(1, use_dim_v))
+dim_text = 'internal error'
+scale = 1
+
+if attribute != '':
+    v = getattr(shape,attribute)
+    if isinstance(v,fab.types.Bounds):
+        width = v.xmax-v.xmin
+        height = v.ymax-v.ymin
+        depth = v.zmax-v.zmin
+        scale = (width+height+depth)/3
+        dim_text = "%.4f x %.4f x %.4f" % (width,height,depth)
+    elif isinstance(v,int) or isinstance(v,float):
+        dim_text = "%s %s" % (dim_name, v)
+        scale = v
+    else:
+        output("don't know:", "%s" % v)
+else:
+    dim_text = "%s %.4f" % (dim_name,dim_value)
+    scale = dim_value
+
+output('txt',dim_text)
+scale = max(0.1,min(1.0,scale + 0.0))
+if size !=0:
+    scale=size
+output('scale',scale)
+
+# offset text
 x=shape.bounds.xmin
 y=shape.bounds.ymin - 2 * scale
 
 
 # print( set(globals()))
 # output('scale',scale)
-output('used_dim_value', use_dim_v)
 output('annotation', 
-	fab.shapes.set_color(fab.shapes.text(dim_text, x, y, scale), 100, 100, 255))
+    fab.shapes.set_color(fab.shapes.text(dim_text, x, y, scale), 100, 100, 255))
+
+

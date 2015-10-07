@@ -1,0 +1,12 @@
+title('-')
+
+tot=0
+for i,name in enumerate([
+    'actual_knob_r',
+    'wall_thickness',
+   
+    ]):
+    input(name, float)
+    tot -= locals()[name] if i!=0 else -locals()[name]
+
+output('total',tot)
