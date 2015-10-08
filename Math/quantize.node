@@ -3,6 +3,8 @@ title("Quantize")
 # in list of values
 # in multiple, i.e. "2" means round to multiples of 2
 
+input('value',float)
+
 # in round-up/down: +/- (default is up)
 # out quantized
 
@@ -10,8 +12,6 @@ input('allowed_list',list)
 input('round_multiple',float)
 
 input('round_down',int)
-
-input('value',float)
 
 rez=None
 log = ''
@@ -42,5 +42,5 @@ elif len(allowed_list) > 0:
         rez=allowed_list[-1]
 
 
-output('log',log)
+# output('log',log)
 output("quantized",rez)

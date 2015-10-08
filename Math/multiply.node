@@ -1,12 +1,12 @@
-title('+')
+title('*')
 
-tot=0
+tot=1
 for name in [
     'a',
     'b',
     'c',
     ]:
     input(name, float)
-    tot += locals()[name]
+    tot *= locals()[name]
 
 output('total',tot)

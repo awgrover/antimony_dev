@@ -26,7 +26,7 @@ if attribute != '':
         height = v.ymax-v.ymin
         depth = v.zmax-v.zmin
         scale = (width+height+depth)/3
-        dim_text = "%.4f x %.4f x %.4f" % (width,height,depth)
+        dim_text = "%s %.4f x %.4f x %.4f" % (dim_name,width,height,depth)
     elif isinstance(v,int) or isinstance(v,float):
         dim_text = "%s %s" % (dim_name, v)
         scale = v
@@ -45,6 +45,10 @@ output('scale',scale)
 # offset text
 x=shape.bounds.xmin
 y=shape.bounds.ymin - 2 * scale
+
+input("prev_annotation",fab.types.Shape)
+output('prev',prev_annotation)
+y+=prev_annotation.bounds.ymax + scale
 
 
 # print( set(globals()))

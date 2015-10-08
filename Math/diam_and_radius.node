@@ -1,0 +1,6 @@
+title("Diam/Radius")
+
+input("a",float)
+
+output("diam", a *2)
+output("radius", a/2)
