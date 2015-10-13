@@ -1,0 +1,6 @@
+import fab
+
+title("frep")
+
+input('shape',fab.types.Shape)
+output('frep',shape.math)
