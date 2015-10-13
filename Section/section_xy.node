@@ -1,6 +1,6 @@
 import fab
 
-title("Print Section")
+title("Section XY")
 # take a section, set it up for printing
 # depth is the depth of the section
 # dminz is how far off the bounds.minz
@@ -56,4 +56,3 @@ if stack_below.math != "=1;":
     output("prev",stack_below)
 
 output("section",section)
-sb.export.stl(section)
