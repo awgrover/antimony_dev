@@ -1,7 +1,7 @@
 import fab
 from math import sqrt
 
-title('Section Z')
+title('Cut-Away Z')
 # Section the shape, off to the side
 # The cut is the yz plane
 # rotate it with theta,

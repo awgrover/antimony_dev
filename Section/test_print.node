@@ -1,0 +1,54 @@
+import fab
+
+title("Print Section")
+# take a section, set it up for printing
+# depth is the depth of the section
+# dminz is how far off the bounds.minz
+
+
+input('shape', fab.types.Shape)
+
+input('depth', float, .1)
+
+input('dminz', float, .1)
+
+input('label',str,'section')
+input('label_scale',float)
+
+input('stack_below', fab.types.Shape)
+
+# make section box
+section = fab.shapes.cube(
+    shape.bounds.xmin, 
+    shape.bounds.xmax, 
+    shape.bounds.ymin, 
+    shape.bounds.ymax,
+    shape.bounds.zmin + dminz,
+    shape.bounds.zmin + dminz + depth
+    )
+
+# section the shape
+section = shape & section
+
+dz = -section.bounds.zmin # Bring down to the xy plan
+dx = stack_below.bounds.xmin - section.bounds.xmin if stack_below.math != '=1;' else -1
+dy = -(stack_below.bounds.xmax - stack_below.bounds.xmin)*2 if stack_below.math != '=1;' else 0
+section = fab.shapes.translate(section, dx, dy, dz)
+
+# label
+if label != '':
+    if label_scale == 0:
+        label_scale = max((shape.bounds.ymax - shape.bounds.ymin)/4,.1) 
+    label_text = fab.shapes.text(
+        label, 
+        section.bounds.xmin, 
+        section.bounds.ymin - label_scale, 
+        label_scale
+        ) 
+    output('label_text',label_text)
+
+# color it
+section = fab.shapes.set_color(section, 150, 150,200)
+
+output("section",section)
+sb.export.stl(section)
