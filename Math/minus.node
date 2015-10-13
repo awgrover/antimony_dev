@@ -2,8 +2,8 @@ title('-')
 
 tot=0
 for i,name in enumerate([
-    'actual_knob_r',
-    'wall_thickness',
+    'a',
+    'b',
    
     ]):
     input(name, float)

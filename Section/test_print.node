@@ -4,13 +4,15 @@ title("Print Section")
 # take a section, set it up for printing
 # depth is the depth of the section
 # dminz is how far off the bounds.minz
+# OR minz is how far off the xy plane
 
 
 input('shape', fab.types.Shape)
 
 input('depth', float, .1)
 
-input('dminz', float, .1)
+input('min_z', float, .1)
+input('dmin_z', float, .1)
 
 input('label',str,'section')
 input('label_scale',float)
@@ -23,8 +25,8 @@ section = fab.shapes.cube(
     shape.bounds.xmax, 
     shape.bounds.ymin, 
     shape.bounds.ymax,
-    shape.bounds.zmin + dminz,
-    shape.bounds.zmin + dminz + depth
+    shape.bounds.zmin + dmin_z if min_z == 0 else min_z,
+    shape.bounds.zmin + dmin_z + depth if min_z == 0 else min_z+depth
     )
 
 # section the shape
@@ -32,7 +34,7 @@ section = shape & section
 
 dz = -section.bounds.zmin # Bring down to the xy plan
 dx = stack_below.bounds.xmin - section.bounds.xmin if stack_below.math != '=1;' else -1
-dy = -(stack_below.bounds.xmax - stack_below.bounds.xmin)*2 if stack_below.math != '=1;' else 0
+dy = (stack_below.bounds.ymin - section.bounds.ymin) +(stack_below.bounds.ymin - stack_below.bounds.ymax)*2 if stack_below.math != '=1;' else 0
 section = fab.shapes.translate(section, dx, dy, dz)
 
 # label
@@ -42,13 +44,16 @@ if label != '':
     label_text = fab.shapes.text(
         label, 
         section.bounds.xmin, 
-        section.bounds.ymin - label_scale, 
+        (section.bounds.ymin - label_scale)*1.05,
         label_scale
         ) 
-    output('label_text',label_text)
+    output('label_text',fab.shapes.set_color(label_text, 150, 150,200))
 
 # color it
 section = fab.shapes.set_color(section, 150, 150,200)
+
+if stack_below.math != "=1;":
+    output("prev",stack_below)
 
 output("section",section)
 sb.export.stl(section)
