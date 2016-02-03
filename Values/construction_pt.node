@@ -1,0 +1,15 @@
+import fab
+
+title('construction-point')
+
+input('previous_x',float)
+input('previous_y',float)
+
+input('dx', float)
+input('dy', float)
+
+input("offset",bool)
+
+
+output('x',dx+previous_x if offset else 0.0)
+output('y',dy+previous_y if offset else 0.0)

@@ -1,0 +1,14 @@
+title('Min')
+
+rez=None
+for name in [
+    'a',
+    'b',
+    'c',
+    ]:
+    input(name, float)
+    if rez==None:
+        rez = locals()[name] 
+    rez = min(rez,locals()[name])
+
+output('min',rez)
