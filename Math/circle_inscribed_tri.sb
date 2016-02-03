@@ -1,0 +1,14 @@
+import math
+
+title('inscribed_circle_triangle')
+input('d', float)
+
+r=d/2.0
+l= 2.0 * math.sqrt(3.0 * r*r)
+h = math.sqrt(3.0 * .25 * l *l)
+
+# Hook to "2D Triangle"
+# y1 => self.y0 + self.dy/2
+# x2 => self.x0
+output('length', l) # Hook to "dy"
+output('height', h) # Hook to "dx"
